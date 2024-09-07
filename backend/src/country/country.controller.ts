@@ -35,8 +35,8 @@ export class CountryController {
     return this.countryService.getCountryNewInfos(countryCode);
   }
 
-  @Post(':countryCode/create')
-  async createCountryInfos(@Param('countryCode') countryCode: string) {
+  @Post(':countryCode/create_infos')
+  async createdNewInfosCountry(@Param('countryCode') countryCode: string) {
     return this.countryService.createdNewInfosCountry(countryCode);
   }
 }

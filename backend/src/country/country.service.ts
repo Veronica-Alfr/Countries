@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
+import { Country, CountryDocument } from './schemas/countries.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import {
-  Country,
-  CountryDocument,
   CountryNewInfos,
   CountryNewInfosDocument,
 } from './schemas/country.schema';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 
 @Injectable()
 export class CountryService {
@@ -62,9 +61,15 @@ export class CountryService {
     }
   }
 
-  async listCountries(): Promise<Country[]> {
+  async listCountries(): Promise<Country[] | []> {
     try {
-      return await this.countryModel.find().exec();
+      const countries = await this.countryModel.find().exec();
+
+      if (!countries || countries.length === 0) {
+        console.log('No countries found in the database');
+        throw new Error('No countries available');
+      }
+      return countries;
     } catch (error) {
       console.error('Error listing countries:', error);
       throw new Error('Failed to list countries');
@@ -100,7 +105,7 @@ export class CountryService {
       );
 
       console.log('countryFlagResponse: ', countryFlagResponse?.data);
-      return countryFlagResponse?.data;
+      return countryFlagResponse?.data?.flag;
     } catch (error) {
       console.error('Error fetching country info:', error);
       throw new Error('Failed to fetch country flag');
@@ -122,8 +127,8 @@ export class CountryService {
 
       const createdCountry = await this.countryInfoModel.create({
         countryCode,
-        countryName: countryInfos.countryName,
-        ...countryInfos,
+        countryName: countryInfos?.countryName,
+        borders: countryInfos?.borders || [],
         flagUrl: countryFlag,
       });
 
@@ -134,9 +139,20 @@ export class CountryService {
     }
   }
 
-  async getCountryNewInfos(countryCode: string): Promise<CountryNewInfos> {
+  async getCountryNewInfos(
+    countryCode: string,
+  ): Promise<CountryNewInfos | null> {
     try {
-      return await this.countryInfoModel.findOne({ countryCode }).exec();
+      const country = await this.countryInfoModel
+        .findOne({ countryCode })
+        .exec();
+
+      if (!country) {
+        console.log(`No information found for country code: ${countryCode}`);
+        return null;
+      }
+
+      return country;
     } catch (error) {
       console.error('Error fetching country info:', error);
       throw new Error('Failed to fetch country information');
