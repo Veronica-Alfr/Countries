@@ -20,8 +20,23 @@ export class CountryController {
     return this.countryService.listCountries();
   }
 
-  @Get(':countryCode')
+  @Get(':countryCode/infos')
   async getCountryInfo(@Param('countryCode') countryCode: string) {
     return this.countryService.getCountryInfo(countryCode);
+  }
+
+  @Get(':countryCode/flag')
+  async getCountryFlag(@Param('countryCode') countryCode: string) {
+    return this.countryService.getCountryFlag(countryCode);
+  }
+
+  @Get(':countryCode')
+  async getCountryNewInfos(@Param('countryCode') countryCode: string) {
+    return this.countryService.getCountryNewInfos(countryCode);
+  }
+
+  @Post(':countryCode/create')
+  async createCountryInfos(@Param('countryCode') countryCode: string) {
+    return this.countryService.createdNewInfosCountry(countryCode);
   }
 }
