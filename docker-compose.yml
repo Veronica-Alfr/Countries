@@ -1,0 +1,57 @@
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    expose:
+      - 5173
+    working_dir: /app-frontend
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-t", "-i:5173"]
+      timeout: 10s
+      retries: 5
+
+  backend:
+    container_name: backend_app
+    build: ./backend
+    restart: always
+    ports:
+      - "3001:3001"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    working_dir: /backend-app
+    volumes:
+      - ./backend:/backend-app
+    environment:
+      - APP_PORT=3001
+      - MONGODB_URI=mongodb://mongo:27017/countries
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      timeout: 10s
+      retries: 5
+    expose:
+      - 3001
+
+  mongo:
+    image: 'mongo:latest'
+    container_name: app_mongo
+    restart: always
+    environment:
+      - MONGO_INIT_DB=countries
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - '27017:27017'
+    expose:
+      - 27017
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand('ping').ok"]
+      timeout: 10s
+      retries: 5
+
+volumes:
+  mongo-data:
