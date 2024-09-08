@@ -104,8 +104,7 @@ export class CountryService {
         ),
       );
 
-      console.log('countryFlagResponse: ', countryFlagResponse?.data);
-      return countryFlagResponse?.data?.flag;
+      return countryFlagResponse?.data.data.flag;
     } catch (error) {
       console.error('Error fetching country info:', error);
       throw new Error('Failed to fetch country flag');
@@ -129,7 +128,7 @@ export class CountryService {
         countryCode,
         countryName: countryInfos?.countryName,
         borders: countryInfos?.borders || [],
-        flagUrl: countryFlag,
+        flagUrl: countryFlag ?? '',
       });
 
       return createdCountry;

@@ -8,7 +8,6 @@ export class CountryNewInfos {
   @Prop({ required: true })
   countryCode: string;
 
-  @Prop({ required: true })
   countryName: string;
 
   @Prop({ required: true })
