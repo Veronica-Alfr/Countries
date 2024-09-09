@@ -5,7 +5,7 @@
 The Countries project is responsible for listing countries and their details, including a chart that shows the country’s population over time.
   </p>
 
-  <h3>Status do Projeto</h3>
+  <h3>Project Status</h3>
   
     In Progress 🛠️🚀
  
