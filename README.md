@@ -66,7 +66,7 @@ The Countries project is responsible for listing countries and their details, in
 
   <h3>🛠 Technologies</h3>
   
-  <p>The technologies used were Nest.js, Docker, MongoDB, Eslint.</p>
+  <p>The technologies used were Nest.js, Docker, MongoDB, React, React Query, TypeScript, Eslint, Prettier e Vite.</p>
 
   <h3>Author</h3>
 
