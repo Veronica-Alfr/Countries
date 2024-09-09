@@ -51,7 +51,8 @@ The Countries project is responsible for listing countries and their details, in
 
   > :information_source: If you want to use environment variables, here are some:
 
-  <div background-color="gray">
+  <div background-color='gray'>
+
     PORT=3001
     MONGODB_URI=mongodb://mongo:27017/countries
     API_URL=http://localhost:3001/countries
