@@ -10,7 +10,7 @@ The Countries project is responsible for listing countries and their details, in
     In Progress 🛠️🚀
  
   <details>
-    <summary><h3>🐋 Rodando no Docker vs Localmente</h3></summary>
+    <summary><h3>🐋 Running on Docker vs Locally</h3></summary>
   
   ## 👉 With Docker
 
