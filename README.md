@@ -33,15 +33,17 @@ The Countries project is responsible for listing countries and their details, in
   
   ## 👉 Without Docker
 
-  > :information_source: Instale as dependências com `npm install`
-
-  - :information_source: Install the dependencies with npm install.
+  > :information_source: Install the dependencies with `npm install` in backend/ and frontend/ directories.
 
   - **:warning: Attention:** Do not run the command npm audit fix! It updates several project dependencies that can cause conflicts.
 
   - **✨ Tip:** To run the project this way, you must have node installed on your computer.
 
   - **:warning: It is expected that the node version used is among the latest (v20+).
+
+  - To run the backend, use the command `npm start` in derectory backend/.
+
+  - To run the frontend, use the command `npm run dev` in derectory frontend/.
 
   <br/>
 
