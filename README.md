@@ -49,7 +49,7 @@ The Countries project is responsible for listing countries and their details, in
 
   ## 👉 Enviroments⚙️⚙️
 
-  > :information_source: If you want to use environment variables, here are some:
+  > :information_source: If you want to use environment variables, here are some for the backend/:
 
   <div background-color='gray'>
 
@@ -57,8 +57,6 @@ The Countries project is responsible for listing countries and their details, in
     MONGODB_URI=mongodb://mongo:27017/countries
     API_URL=http://localhost:3001/countries
   </div>
-
- - **:warning: Attention:** Create them at the root of the project to avoid errors when read by Docker.
 
   <br/>
 
